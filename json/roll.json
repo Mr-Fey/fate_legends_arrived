@@ -1,0 +1,227 @@
+{
+  "common": {
+    "price": "quartz", 
+    "drop": {
+      "nothing": {
+        "name": "Ничего",
+        "description": "Вам ничего не выпало",
+        "chance": 0.30,
+        "type": "nothing"
+      },
+      "20000yen": {
+        "name": "20.000 йен",
+        "description": "Вам выпало 20.000 йен",
+        "chance": 0.20,
+        "type": "money",
+        "amount": 20000
+      },
+      "lancer": {
+        "name": "Лансер",
+        "description": "Вам выпал Лансер",
+        "chance": 0.08,
+        "type": "character",
+        "character_name": "Lancer"
+      },
+      "rider": {
+        "name": "Райдер",
+        "description": "Вам выпал Райдер",
+        "chance": 0.08,
+        "type": "character",
+        "character_name": "Rider"
+      },
+      "caster": {
+        "name": "Кастер",
+        "description": "Вам выпал Кастер",
+        "chance": 0.09,
+        "type": "character",
+        "character_name": "Caster"
+      },
+      "assassin": {
+        "name": "Ассасин",
+        "description": "Вам выпал Ассасин",
+        "chance": 0.09,
+        "type": "character",
+        "character_name": "Assassin"
+      },
+      "berserker": {
+        "name": "Берсеркер",
+        "description": "Вам выпал Берсеркер",
+        "chance": 0.06,
+        "type": "character",
+        "character_name": "Berserker"
+      },
+      "archer": {
+        "name": "Арчер",
+        "description": "Вам выпал Арчер",
+        "chance": 0.05,
+        "type": "character",
+        "character_name": "Archer"
+      },
+      "saber": {
+        "name": "Сейбер",
+        "description": "Вам выпал Сейбер",
+        "chance": 0.03,
+        "type": "character",
+        "character_name": "Saber"
+      },
+      "4quartz": {
+        "name": "RСК",
+        "description": "Вам выпало 4 СК",
+        "chance": 0.02,
+        "type": "quartz", 
+        "amount": 4, 
+        "quartz_type": "quartz" 
+      } 
+    }
+  }, 
+  "negative": {
+    "price": "negative_quartz",
+    "drop": {
+      "100000yen": {
+        "name": "100.000 йен",
+        "description": "Вам выпало 100.000 йен",
+        "chance": 0.20,
+        "type": "money",
+        "amount": 100000
+      },
+      "3_quartz": {
+        "name": "3 СК",
+        "description": "Вам выпало 3 СК",
+        "chance": 0.20,
+        "type": "quartz",
+        "amount": 3,
+        "quartz_type": "quartz"
+      },
+      "nothing": {
+        "name": "Ничего",
+        "description": "Вам ничего не выпало",
+        "chance": 0.11,
+        "type": "nothing"
+      },
+      "pretender": {
+        "name": "Pretender",
+        "description": "Вам выпал Pretender",
+        "chance": 0.11,
+        "type": "character",
+        "character_name": "Pretender"
+      },
+      "foreigner": {
+        "name": "Foreigner",
+        "description": "Вам выпал Foreigner",
+        "chance": 0.10,
+        "type": "character",
+        "character_name": "Foreigner"
+      },
+      "shielder": {
+        "name": "Shielder",
+        "description": "Вам выпал Shielder",
+        "chance": 0.10,
+        "type": "character",
+        "character_name": "Shielder"
+      },
+      "alter_ego": {
+        "name": "Alter Ego",
+        "description": "Вам выпал Alter Ego",
+        "chance": 0.08,
+        "type": "character",
+        "character_name": "Alter Ego"
+      },
+      "ruler": {
+        "name": "Ruler",
+        "description": "Вам выпал Ruler",
+        "chance": 0.05,
+        "type": "character",
+        "character_name": "Ruler"
+      },
+      "avenger": {
+        "name": "Avenger",
+        "description": "Вам выпал Avenger",
+        "chance": 0.05,
+        "type": "character",
+        "character_name": "Avenger"
+      }
+    }
+  }, 
+  "gold": {
+    "price": "gold_quartz",
+    "drop": {
+      "500000yen": {
+        "name": "500.000 йен",
+        "description": "Вам выпало 500.000 йен",
+        "chance": 0.20,
+        "type": "money",
+        "amount": 500000
+      },
+      "grand_saber": {
+        "name": "Гранд Сейбер",
+        "description": "Вам выпал Гранд Сейбер",
+        "chance": 0.08,
+        "type": "character",
+        "character_name": "Grand Saber"
+      },
+      "grand_archer": {
+        "name": "Гранд Арчер",
+        "description": "Вам выпал Гранд Арчер",
+        "chance": 0.08,
+        "type": "character",
+        "character_name": "Grand Archer"
+      },
+      "grand_lancer": {
+        "name": "Гранд Лансер",
+        "description": "Вам выпал Гранд Лансер",
+        "chance": 0.08,
+        "type": "character",
+        "character_name": "Grand Lancer"
+      },
+      "grand_rider": {
+        "name": "Гранд Райдер",
+        "description": "Вам выпал Гранд Райдер",
+        "chance": 0.08,
+        "type": "character",
+        "character_name": "Grand Rider"
+      },
+      "grand_assassin": {
+        "name": "Гранд Ассасин",
+        "description": "Вам выпал Гранд Ассасин",
+        "chance": 0.08,
+        "type": "character",
+        "character_name": "Grand Assassin"
+      },
+      "grand_caster": {
+        "name": "Гранд Кастер",
+        "description": "Вам выпал Гранд Кастер",
+        "chance": 0.08,
+        "type": "character",
+        "character_name": "Grand Caster"
+      },
+      "grand_berserker": {
+        "name": "Гранд Берсеркер",
+        "description": "Вам выпал Гранд Берсеркер",
+        "chance": 0.08,
+        "type": "character",
+        "character_name": "Grand Berserker"
+      },
+      "grand_ruler": {
+        "name": "Гранд Рулер",
+        "description": "Вам выпал Гранд Рулер",
+        "chance": 0.08,
+        "type": "character",
+        "character_name": "Grand Ruler"
+      },
+      "grand_avenger": {
+        "name": "Гранд Эвенджер",
+        "description": "Вам выпал Гранд Эвенджер",
+        "chance": 0.08,
+        "type": "character",
+        "character_name": "Grand Avenger"
+      },
+      "grand_shielder": {
+        "name": "Гранд Шилдер",
+        "description": "Вам выпал Гранд Шилдер",
+        "chance": 0.08,
+        "type": "character",
+        "character_name": "Grand Shielder"
+      }
+    }
+  }
+}

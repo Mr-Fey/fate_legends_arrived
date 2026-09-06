@@ -1,0 +1,44 @@
+{
+    "info_command_description": "Server and bot information",
+    "bot_info_bot_count": "Bots: {bot_count}",
+    "bot_info_creator": "Creator: <@582225310943150096>",
+    "bot_info_guild_name": "Server: {guild_name}",
+    "bot_info_latency": "Ping: {latency}ms",
+    "bot_info_member_count": "Members: {member_count}",
+    "bot_info_title": "Information about Bot {user}",
+
+    "summon_command_description": "Summon Servant",
+
+    "profile_command_description": "View your profile",
+    "profile_inkognito_error": "This user has inkognito mode enabled, you cannot view their profile.",
+    "profile_member_description": "View member's profile",
+    "profile_template_title": "Profile of {user}",
+
+    "library_description": "Library with information about Servants", 
+    "library_servant_description": "Servant you want to know information about",
+
+    "disperse_command_description": "Disperse the Servant", 
+    "disperse_servant_description": "Servant to disperse", 
+    "disperse_successfully": "{servant} was successfully dispersed for {price}",
+    
+    "transfer_command_description": "Transfer Servant or Quartz",
+    "transfer_servant_description": "Transfer Servant to another Person",
+    "transfer_servant_arg_description": "Servant to transfer",
+    "transfer_servant_member_description": "Member to transfer the Servant to",
+    "transfer_servant_comment_description": "Optional comment, that will be added to tranfer's notify",
+    "transfer_servant_no_members_slots_error": "Member has no free slots for Servant",
+    "transfer_servant_successfully": "Servant {servant} was successfully transferred to {member}",
+    "transfer_servant_successfully_notify": "{member} transferred Servant {servant} to you! It was placed in slot #{slot_index}\nComment: {comment}",
+    
+    "unknown_error": "Unknown error, please contact admins!",
+    "no_money_error": "Insufficient funds!",
+    "expired_error": "The time for interaction has already expired!",
+    "same_id_per_send_error": "You can't send it to yourself!",
+    "not_from_author_interaction_error": "This interaction was called not from you!",
+	"no_free_characters_slots_error": "You have no free slots for Servant!",
+	"no_free_characters_slots_for_sell_error": "You need minimum 1 free slot for selling Servant!",
+    "not_enough_quartz_error": "You don't have enough quartz to summon a Servant!", 
+
+    "banner": "Banner:", 
+    "inkognito": "Inkognito:"
+}

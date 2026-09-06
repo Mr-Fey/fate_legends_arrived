@@ -1,0 +1,51 @@
+{
+    "statuslist": [
+        "Где я?",
+        "Стырил печеньки...",
+        "Ооо~ Гильгамеш🤤",
+        "Я усталь..",
+        "Ну и скоро там битва?",
+        "Хрум-хрум...хрум *хрумкает печеньки*"
+    ],
+    "log_channel_id": 1474398567182504107, 
+    "shop_channels_ids": [1490666972961177772, 1490668518587240468, 1490668813329633340], 
+
+    "exchange_info": {
+        "yens_to_quartz": {
+            "yen": 50000, 
+            "quartz": 1, 
+            "quartz_type": "quartz" 
+        }, 
+        "quartz_to_yens": {
+            "quartz": 30000, 
+            "negative_quartz": 100000, 
+            "gold_quartz": 500000
+        }
+    },
+    "character_colors": {
+        "common": "0x979C9F", 
+        "not-common": "0x4586ed", 
+        "grand": "0xFFD700"
+    }, 
+    "character_chances": {
+        "common": 0.85, 
+        "not-common": 0.148, 
+        "grand": 0.0002
+    }, 
+    "quartz_types": {
+        "r": "quartz",
+        "base": "quartz", 
+        "quartz": "quartz", 
+        "lr": "negative_quartz",
+        "negative": "negative_quartz", 
+        "negative_quartz": "negative_quartz", 
+        "gold_quartz": "gold_quartz",
+        "ssr": "gold_quartz", 
+        "gold": "gold_quartz"
+    }, 
+    "quartz_emojis": {
+        "quartz": "<:CK:1543612668005580890>", 
+        "negative_quartz": "<:Negative:1545463179692216503>", 
+        "gold_quartz": "<:Gold:1545463258838868098>"
+    }
+} 

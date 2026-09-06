@@ -1,0 +1,44 @@
+{
+	"info_command_description": "Информация о сервере и боте",
+	"bot_info_bot_count": "Ботов: {bot_count}",
+	"bot_info_creator": "Создатель: <@582225310943150096>",
+	"bot_info_guild_name": "Сервер: {guild_name}",
+	"bot_info_latency": "Пинг: {latency}ms",
+	"bot_info_member_count": "Участников: {member_count}",
+	"bot_info_title": "Информация о боте {user}", 
+    
+	"summon_command_description": "Призвать слугу",
+
+	"profile_command_description": "Просмотреть свой профиль",
+	"profile_inkognito_error": "У этого пользователя включен режим инкогнито, вы не можете просмотреть его профиль.",
+	"profile_member_description": "Просмотреть профиль участника",
+	"profile_template_title": "Профиль {user}",
+
+    "library_description": "Библиотека с информацией о слугах", 
+    "library_servant_description": "Слуга, о котором вы хотите узнать больше информации",
+
+    "disperse_command_description": "Рассеить слугу", 
+    "disperse_servant_description": "Слуга для рассеивания", 
+    "disperse_successfully": "{servant} был успешно рассеян за {price}",
+
+	"transfer_command_description": "Передача Слуги или Святого Кварца",
+	"transfer_servant_description": "Передать Слугу другому человеку",
+	"transfer_servant_arg_description": "Слуга для передачи",
+	"transfer_servant_member_description": "Участник, которому хотите передать Слугу",
+    "transfer_servant_comment_description": "Необязательный комментарий, который будет добавлен к оповещению о трансфере",
+	"transfer_servant_no_members_slots_error": "У участника нет свободных слотов для Слуги",
+	"transfer_servant_successfully": "Слуга {servant} успешно передан {member}",
+	"transfer_servant_successfully_notify": "{member} передал вам Слугу {servant}! Он помещён в слот №{slot_index}\nКомментарий: {comment}",
+    
+	"unknown_error": "Неизвестная ошибка, обратитесь к администраторам!",
+    "no_money_error": "Недостаточно средств!",
+    "expired_error": "Время на взаимодействие исчерпано!",
+	"same_id_per_send_error": "Вы не можете передавать самому себе!",
+	"not_from_author_interaction_error": "Это взаимодействие было вызвано не вами!",
+	"no_free_characters_slots_error": "У вас недостаточно свободных слотов для слуги!", 
+	"no_free_characters_slots_for_sell_error": "У вас должен быть минимум 1 слот для рассеивания Слуги!",
+	"not_enough_quartz_error": "Недостаточно кварца для призыва Слуги!", 
+
+    "banner": "Баннер:", 
+    "inkognito": "Инкогнито:"
+}
