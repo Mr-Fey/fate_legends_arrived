@@ -31,12 +31,19 @@ def profile_template(
             ),
             ui.Separator(),
             *(
-                ui.TextDisplay(
-                    get_money_draw(
-                        value=getattr(user, conf.quartz_types.get(m_type, 'quartz')),
-                        type=m_type,
-                    )
-                ) for m_type in ["quartz", "negative", "gold"]
+                ui.Section(
+                    ui.TextDisplay(
+                        get_money_draw(
+                            value=getattr(user, conf.quartz_types.get(m_type, 'quartz')),
+                            type=m_type,
+                        ),
+                    ),
+                    accessory=ui.Button(
+                        label="Перевести в 💴", 
+                        custom_id=f"exchange_quartz:{idx}",
+                        disabled=not is_author,
+                    ), 
+                ) for idx, (m_type) in enumerate(["quartz", "negative_quartz", "gold_quartz"])
             ),
             ui.Section(
                 ui.TextDisplay(f"{yens:,}💴"),
