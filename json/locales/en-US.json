@@ -20,6 +20,11 @@
     "disperse_command_description": "Disperse the Servant", 
     "disperse_servant_description": "Servant to disperse", 
     "disperse_successfully": "{servant} was successfully dispersed for {price}",
+
+    "edit_quartz_command_description": "Edit member's quartz",
+    "edit_member_quartz_decline": "You must fill all fields to continue!",
+    "edit_member_quartz_complited": "Quartz was issued to the user.",
+    "edit_member_quartz_notify": "Your quartz balance has been updated: {quartz}",
     
     "transfer_command_description": "Transfer Servant or Quartz",
     "transfer_servant_description": "Transfer Servant to another Person",

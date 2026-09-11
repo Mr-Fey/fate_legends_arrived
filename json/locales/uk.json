@@ -21,6 +21,11 @@
     "disperse_servant_description": "Слуга для розвіювання", 
     "disperse_successfully": "{servant} був успішно розвіян за {price}",
 
+    "edit_quartz_command_description": "Редагувати Кварц користувача",
+    "edit_member_quartz_decline": "Ви маєте заповнити всі графи перед продовженням!",
+    "edit_member_quartz_complited": "Кварц було передано користувачу!",
+    "edit_member_quartz_notify": "Ваш рахунок Кварцу було змінено адміністрацією: {quartz}",
+
     "transfer_command_description": "Передача Слуги или Кварцу",
     "transfer_servant_description": "Передати Слугу іншій людині",
     "transfer_servant_arg_description": "Слуга для передачі",

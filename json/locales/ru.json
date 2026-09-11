@@ -21,6 +21,11 @@
     "disperse_servant_description": "Слуга для рассеивания", 
     "disperse_successfully": "{servant} был успешно рассеян за {price}",
 
+	"edit_quartz_command_description": "Изменить Кварц пользователя",
+    "edit_member_quartz_decline": "Вы должны заполнить все графы для продолжения!!",
+    "edit_member_quartz_complited": "Кварц был передан пользователю!",
+    "edit_member_quartz_notify": "Ваш баланс Кварца был изменен администрацией: {quartz}",
+
 	"transfer_command_description": "Передача Слуги или Святого Кварца",
 	"transfer_servant_description": "Передать Слугу другому человеку",
 	"transfer_servant_arg_description": "Слуга для передачи",

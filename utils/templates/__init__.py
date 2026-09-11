@@ -12,6 +12,9 @@ from .characters_t import (
     summon_character_result_template,
     summon_character_final_template, 
 )
+from .edit import (
+    edit_member_quartz_template, 
+)
 
 
 __all__ = (
@@ -22,6 +25,9 @@ __all__ = (
 
     #Info templates
     "info_template",
+
+    #edit templates
+    "edit_member_quartz_template",
 
     #Characters templates
     "character_control_template",
