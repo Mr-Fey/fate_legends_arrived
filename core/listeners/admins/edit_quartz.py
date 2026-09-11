@@ -128,7 +128,7 @@ class editMemberListener(commands.Cog):
             translate(
                 "edit_member_quartz_notify",
                 inter.locale,
-                quartz=f"{"+" if value > 0 else "-"}{value}{self.bot.conf.quartz_emojis[quartz_type]}"
+                quartz=f"{'+' if value > 0 else '-'}{value}{self.bot.conf.quartz_emojis[quartz_type]}"
             )
         )
 
