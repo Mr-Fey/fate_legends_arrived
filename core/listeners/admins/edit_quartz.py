@@ -2,6 +2,7 @@ import disnake
 from bot import Bot
 from disnake.ext import commands
 
+from collections import defaultdict
 from utils.templates import edit_member_quartz_template 
 from utils.localization import translate
 from utils.injections import (
@@ -14,7 +15,7 @@ from utils.injections import (
 class editMemberListener(commands.Cog):
     def __init__(self, bot: Bot) -> None:
         self.bot = bot
-        self.data = {}
+        self.data = defaultdict(dict)
 
     @commands.Cog.listener(name="on_dropdown")
     @custom_id_check("edit_member_quartz_user")

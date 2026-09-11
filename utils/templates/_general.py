@@ -45,6 +45,7 @@ def exchange_buttons(user: User, is_author: bool) -> list[ui.Section]:
                 ), 
             ) 
         )
+    return sections
 
 
 def back_to_profile_button(user_id: int) -> ui.ActionRow: 
