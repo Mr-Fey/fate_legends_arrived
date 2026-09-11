@@ -7,11 +7,10 @@ from disnake import (
 
 from db.models import User
 from utils.imgen import _total_banners
-from settings import conf
-from utils.economy import get_money_draw
 from utils.localization import translate
 
 from ._general import (
+    exchange_buttons,
     character_info_select, 
     back_to_profile_button, 
 )
@@ -30,21 +29,7 @@ def profile_template(
                 translate("profile_template_title", locale, user=f"<@{user.id}>")
             ),
             ui.Separator(),
-            *(
-                ui.Section(
-                    ui.TextDisplay(
-                        get_money_draw(
-                            value=getattr(user, conf.quartz_types.get(m_type, 'quartz')),
-                            type=m_type,
-                        ),
-                    ),
-                    accessory=ui.Button(
-                        label="Перевести в 💴", 
-                        custom_id=f"exchange_quartz:{idx}",
-                        disabled=not is_author,
-                    ), 
-                ) for idx, (m_type) in enumerate(["quartz", "negative_quartz", "gold_quartz"])
-            ),
+            *exchange_buttons(user, is_author),
             ui.Section(
                 ui.TextDisplay(f"{yens:,}💴"),
                 accessory=ui.Button(

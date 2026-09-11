@@ -30,7 +30,7 @@ class editMemberListener(commands.Cog):
                 translate("not_from_author_interaction_error", inter.locale),
                 ephemeral=True,
             )
-        self.data[str(inter.message.id)]["user"] = inter.values[0] 
+        self.data[f"{inter.message.id}"]["user"] = inter.values[0] 
 
     @commands.Cog.listener(name="on_dropdown")
     @custom_id_check("edit_member_quartz_type")
@@ -46,7 +46,7 @@ class editMemberListener(commands.Cog):
                 translate("not_from_author_interaction_error", inter.locale),
                 ephemeral=True,
             )
-        self.data[str(inter.message.id)]["quartz_type"] = inter.values[0] 
+        self.data[f"{inter.message.id}"]["quartz_type"] = inter.values[0] 
 
     @commands.Cog.listener(name="on_dropdown")
     @custom_id_check("edit_member_quartz_value")
@@ -62,7 +62,7 @@ class editMemberListener(commands.Cog):
                 translate("not_from_author_interaction_error", inter.locale),
                 ephemeral=True,
             )
-        self.data[str(inter.message.id)]["value"] = inter.values[0] 
+        self.data[f"{inter.message.id}"]["value"] = inter.values[0] 
 
     @commands.Cog.listener(name="on_dropdown")
     @custom_id_check("edit_member_quartz_request")
@@ -78,7 +78,7 @@ class editMemberListener(commands.Cog):
                 translate("not_from_author_interaction_error", inter.locale),
                 ephemeral=True,
             )
-        self.data[str(inter.message.id)]["request"] = inter.values[0] 
+        self.data[f"{inter.message.id}"]["request"] = inter.values[0] 
 
     @commands.Cog.listener(name="on_button_click")
     @custom_id_check("edit_member_quartz_confirm")
@@ -95,10 +95,11 @@ class editMemberListener(commands.Cog):
                 ephemeral=True,
             )
 
-        user: disnake.Member = self.data[str(inter.message.id)].get("user")
-        quartz_type = self.data[str(inter.message.id)].get("quartz_type")
-        request = self.data[str(inter.message.id)].get("request")
-        pre_value = int(self.data[str(inter.message.id)].get("value", 0))
+        key = f"{inter.message.id}"
+        user: disnake.Member = self.data[key].get("user")
+        quartz_type = self.data[key].get("quartz_type")
+        request = self.data[key].get("request")
+        pre_value = int(self.data[key].get("value", 0))
         value = -pre_value if request == "remove" else +pre_value
 
         if any(not i for i in [user, quartz_type, request, value]): 
