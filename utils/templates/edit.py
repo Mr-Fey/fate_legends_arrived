@@ -33,6 +33,7 @@ def edit_member_quartz_template(author_id: int) -> ui.UIComponent:
                 )
             ),
             ui.Separator(),
+            ui.TextDisplay("Выберите количество:"),
             ui.ActionRow(
                 ui.StringSelect(
                     custom_id=f"edit_member_quartz_value:{author_id}",
@@ -46,12 +47,13 @@ def edit_member_quartz_template(author_id: int) -> ui.UIComponent:
                 )
             ),
             ui.Separator(),
+            ui.TextDisplay("Выберите задачу:"),
             ui.ActionRow(
                 ui.StringSelect(
                     custom_id=f"edit_member_quartz_request:{author_id}", 
                     options=[
-                        SelectOption(label="Добавить", description="add"), 
-                        SelectOption(label="Отнять", description="remove"), 
+                        SelectOption(label="Добавить", value="add"), 
+                        SelectOption(label="Отнять", value="remove"), 
                     ]
                 )
             ),

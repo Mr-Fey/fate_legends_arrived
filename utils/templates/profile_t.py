@@ -5,12 +5,12 @@ from disnake import (
     MediaGalleryItem,
 )
 
-from db.models import User
+from db.models import User 
+from utils.economy import get_money_draw
 from utils.imgen import _total_banners
 from utils.localization import translate
 
 from ._general import (
-    exchange_buttons,
     character_info_select, 
     back_to_profile_button, 
 )
@@ -29,7 +29,45 @@ def profile_template(
                 translate("profile_template_title", locale, user=f"<@{user.id}>")
             ),
             ui.Separator(),
-            *exchange_buttons(user, is_author),
+            ui.Section(
+                ui.TextDisplay(
+                    get_money_draw(
+                        value=getattr(user, "quartz"),
+                        type="quartz",
+                    ),
+                ),
+                accessory=ui.Button(
+                    label="Перевести в 💴", 
+                    custom_id=f"exchange_quartz:{user.id}:0",
+                    disabled=not is_author,
+                ), 
+            ),
+            ui.Section(
+                ui.TextDisplay(
+                    get_money_draw(
+                        value=getattr(user, "negative_quartz"),
+                        type="negative_quartz",
+                    ),
+                ),
+                accessory=ui.Button(
+                    label="Перевести в 💴", 
+                    custom_id=f"exchange_quartz:{user.id}:1",
+                    disabled=not is_author,
+                ), 
+            ),
+            ui.Section(
+                ui.TextDisplay(
+                    get_money_draw(
+                        value=getattr(user, "gold_quartz"),
+                        type="gold_quartz",
+                    ),
+                ),
+                accessory=ui.Button(
+                    label="Перевести в 💴", 
+                    custom_id=f"exchange_quartz:{user.id}:2",
+                    disabled=not is_author,
+                ), 
+            ),
             ui.Section(
                 ui.TextDisplay(f"{yens:,}💴"),
                 accessory=ui.Button(

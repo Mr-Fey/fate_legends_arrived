@@ -97,20 +97,20 @@ class editMemberListener(commands.Cog):
             )
 
         key = f"{inter.message.id}"
-        user: disnake.Member = self.data[key].get("user")
+        user_id = int(self.data[key].get("user", 0))
         quartz_type = self.data[key].get("quartz_type")
         request = self.data[key].get("request")
         pre_value = int(self.data[key].get("value", 0))
         value = -pre_value if request == "remove" else +pre_value
 
-        if any(not i for i in [user, quartz_type, request, value]): 
+        if any(not i for i in [user_id, quartz_type, request, value]): 
             return await inter.send(
                 translate("edit_member_quartz_decline", inter.locale), 
                 ephemeral=True, 
             )
 
         await self.bot.db.update_user_money(
-            user_id=user.id, 
+            user_id=user_id, 
             type=quartz_type, 
             delta=value, 
         )
@@ -118,16 +118,17 @@ class editMemberListener(commands.Cog):
             translate("edit_member_quartz_complited", inter.locale), 
             ephemeral=True,
         )
-        await inter.edit_original_message(
-            coomponents=edit_member_quartz_template(inter.author.id), 
+        await inter.message.edit(
+            components=edit_member_quartz_template(inter.author.id), 
             flags=disnake.MessageFlags(is_components_v2=True)
         )
         del self.data[str(inter.message.id)]
+        user = await self.bot.fetch_user(user_id)
         await user.send(
             translate(
                 "edit_member_quartz_notify",
                 inter.locale,
-                quartz=f"{value}{self.bot.conf.quartz_emojis[quartz_type]}"
+                quartz=f"{"+" if value > 0 else "-"}{value}{self.bot.conf.quartz_emojis[quartz_type]}"
             )
         )
 

@@ -27,23 +27,24 @@ class ProfileCog(commands.Cog):
             description=Localised("View member's profile", key="profile_member_description"),
         ),
     ):
-        await inter.response.defer(ephemeral=user.is_inkognito)
-        
-        user = await self.bot.db.get_user(member.id)
+        profile_user = await self.bot.db.get_user(member.id)
         is_author = inter.author.id == member.id
-        if user.is_inkognito and not is_author:
+
+        await inter.response.defer(ephemeral=profile_user.is_inkognito)
+
+        if profile_user.is_inkognito and not is_author:
             return await inter.send(
                 translate("profile_inkognito_error", inter.locale),
                 ephemeral=True,
             )
 
-        banner = await characters_image_generate(user.characters, user.banner_id)
-        yens = await self.bot.client.get_user_balance(inter.guild_id, user.id)
+        banner = await characters_image_generate(profile_user.characters, profile_user.banner_id)
+        yens = await self.bot.client.get_user_balance(inter.guild_id, profile_user.id)
 
         await inter.send(
             file=banner, 
-            components=profile_template(is_author, user, yens.total, inter.locale),
-            flags=disnake.MessageFlags(is_components_v2=True, ephemeral=user.is_inkognito),
+            components=profile_template(is_author, profile_user, yens.total, inter.locale),
+            flags=disnake.MessageFlags(is_components_v2=True, ephemeral=profile_user.is_inkognito),
         )
 
 
