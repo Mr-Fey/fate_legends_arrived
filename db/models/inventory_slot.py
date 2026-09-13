@@ -2,6 +2,8 @@ import sqlalchemy as sa
 from .base import BaseModel
 from typing import Optional, TYPE_CHECKING
 
+from settings import conf
+
 from sqlalchemy.orm import (
     Mapped,
     mapped_column,
@@ -55,7 +57,7 @@ class InventorySlot(BaseModel):
 
     @property
     def price(self) -> float: 
-        return self.item.price
+        return f"{self.item.price}{conf.quartz_emojis["quartz"]}"
 
     @property
     def description(self) -> float: 

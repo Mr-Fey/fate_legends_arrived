@@ -21,11 +21,16 @@
     "disperse_servant_description": "Servant to disperse", 
     "disperse_successfully": "{servant} was successfully dispersed for {price}",
 
-    "edit_quartz_command_description": "Edit member's quartz",
+    "edit_quartz_command_description": "Edit member's quartz", 
     "edit_member_quartz_decline": "You must fill all fields to continue!",
     "edit_member_quartz_complited": "Quartz was issued to the user.",
     "edit_member_quartz_notify": "Your quartz balance has been updated: {quartz}",
-    
+
+    "no_items_in_inventory": "WHERE IS YOUR ITEMS? Ah~ you have no money..",
+    "user_inventory_page": "Page: {page}",
+    "user_inventory_page_price": "Price: {price}",
+    "user_inventory_page_rent": "Rent: {rent}",
+
     "transfer_command_description": "Transfer Servant or Quartz",
     "transfer_servant_description": "Transfer Servant to another Person",
     "transfer_servant_arg_description": "Servant to transfer",

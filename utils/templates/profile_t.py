@@ -99,7 +99,6 @@ def profile_template(
                     label="Инвентарь",
                     style=ButtonStyle.secondary,
                     custom_id=f"inventory:{user.id}",
-                    disabled=True, 
                 ),
             )]) if is_author else (),
         )

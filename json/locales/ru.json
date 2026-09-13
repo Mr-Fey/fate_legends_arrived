@@ -26,6 +26,11 @@
     "edit_member_quartz_complited": "Кварц был передан пользователю!",
     "edit_member_quartz_notify": "Ваш баланс Кварца был изменен администрацией: {quartz}",
 
+	"no_items_in_inventory": "Чота нету тут🤨... у тебя похоже нет денег!",
+    "user_inventory_page": "Страница: {page}",
+    "user_inventory_page_price": "Цена: {price}",
+    "user_inventory_page_rent": "Аренда: {rent}",
+
 	"transfer_command_description": "Передача Слуги или Святого Кварца",
 	"transfer_servant_description": "Передать Слугу другому человеку",
 	"transfer_servant_arg_description": "Слуга для передачи",

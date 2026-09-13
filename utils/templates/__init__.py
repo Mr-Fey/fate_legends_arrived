@@ -15,21 +15,27 @@ from .characters_t import (
 from .edit import (
     edit_member_quartz_template, 
 )
+from .inventory import (
+    inventory_menu_template,
+)
 
 
 __all__ = (
-    #Profile templates
+    #profile templates
     "profile_template",
     "profile_controle_template",
     "profile_banner_choice_template",
 
-    #Info templates
+    #info templates
     "info_template",
 
     #edit templates
     "edit_member_quartz_template",
 
-    #Characters templates
+    #inventory templates
+    "inventory_menu_template",
+
+    #characters templates
     "character_control_template",
     "character_info_template", 
     "summon_character_menu_template",

@@ -62,6 +62,10 @@ class User(BaseModel):
     @property 
     def len_free_inventory_slots(self) -> int: 
         return len([i for i in self.inventory if not i.item_id])
+
+    @property 
+    def len_inventory_items(self) -> int:
+        return len(self.inventory_items) 
     
     @property 
     def inventory_items(self) -> List["InventorySlot"]: 
