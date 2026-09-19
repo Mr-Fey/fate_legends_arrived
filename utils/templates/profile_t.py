@@ -2,6 +2,7 @@ from disnake import (
     ui,
     Locale,
     ButtonStyle,
+    SeparatorSpacing,
     MediaGalleryItem,
 )
 
@@ -149,21 +150,22 @@ def profile_exchange_menu(user: User, yens: int) -> ui.UIComponent:
     return [
         ui.Container(
             back_to_profile_button(user.id),
-            ui.Separator(), 
+            ui.Separator(spacing=SeparatorSpacing.large), 
             ui.TextDisplay(f"# 💴 -> {emojis['quartz']}"),
+            ui.Separator(),
             ui.Section(
                 ui.TextDisplay(f"{yens:,}💴"),
                 accessory=ui.Button(
-                    label=(
-                        f"{yents_to_quartz_price}💴 = {yens_to_quartz['quartz']}",
-                        f"{emojis[yens_to_quartz['quartz_type']]}",
-                        f"({round(yens / yents_to_quartz_price)})",
-                    ),
-                    custom_id=f"exchange_money:{user.id}",
+                    label=" ".join([
+                        f"{yents_to_quartz_price:,}💴 = {yens_to_quartz['quartz']:,}СК",
+                        f"({int(yens // yents_to_quartz_price)})",
+                    ]),
+                    custom_id=f"exchange_money_to_quartz:{user.id}",
                 ),
             ),
-            ui.Separator(),
+            ui.Separator(spacing=SeparatorSpacing.large),
             ui.TextDisplay(f"# {emojis['quartz']} -> 💴"),
+            ui.Separator(),
             ui.Section(
                 ui.TextDisplay(
                     get_money_draw(
@@ -172,8 +174,8 @@ def profile_exchange_menu(user: User, yens: int) -> ui.UIComponent:
                     ),
                 ),
                 accessory=ui.Button(
-                    label=f"1 = {quartz_to_yens['quartz']} ({round(user.quartz / 1)})",
-                    custom_id=f"exchange_quartz:{user.id}:0",
+                    label=f"1 = {quartz_to_yens['quartz']:,} ({int(user.quartz // 1)})",
+                    custom_id=f"exchange_quartz_to_money:{user.id}:0",
                 ),
             ),
             ui.Section(
@@ -184,8 +186,8 @@ def profile_exchange_menu(user: User, yens: int) -> ui.UIComponent:
                     ),
                 ),
                 accessory=ui.Button(
-                    label=f"1 = {quartz_to_yens['negative_quartz']} ({round(user.negative_quartz / 1)})",
-                    custom_id=f"exchange_quartz:{user.id}:1",
+                    label=f"1 = {quartz_to_yens['negative_quartz']:,} ({int(user.negative_quartz // 1)})",
+                    custom_id=f"exchange_quartz_to_money:{user.id}:1",
                 ),
             ),
             ui.Section(
@@ -196,12 +198,13 @@ def profile_exchange_menu(user: User, yens: int) -> ui.UIComponent:
                     ),
                 ),
                 accessory=ui.Button(
-                    label=f"1 = {quartz_to_yens['gold_quartz']} ({round(user.gold_quartz / 1)})",
-                    custom_id=f"exchange_quartz:{user.id}:2",
+                    label=f"1 = {quartz_to_yens['gold_quartz']:,} ({int(user.gold_quartz // 1)})",
+                    custom_id=f"exchange_quartz_to_money:{user.id}:2",
                 ),
             ),
-            ui.Separator(),
+            ui.Separator(spacing=SeparatorSpacing.large),
             ui.TextDisplay(f"# {emojis['quartz']} -> {emojis['quartz']}"),
+            ui.Separator(),
             ui.Section(
                 ui.TextDisplay(
                     get_money_draw(
@@ -210,7 +213,7 @@ def profile_exchange_menu(user: User, yens: int) -> ui.UIComponent:
                     ),
                 ),
                 accessory=ui.Button(
-                    label=f"1 = {quartz_to_quartz['negative_quartz']} ({round(user.negative_quartz / quartz_to_quartz['negative_quartz'])})",
+                    label=f"1 = {quartz_to_quartz['negative_quartz']:,} ({int(user.negative_quartz // 1)})",
                     custom_id=f"exchange_quartz_to_quartz:{user.id}:1",
                 ),
             ),
@@ -222,7 +225,7 @@ def profile_exchange_menu(user: User, yens: int) -> ui.UIComponent:
                     ),
                 ),
                 accessory=ui.Button(
-                    label=f"1 = {quartz_to_quartz['gold_quartz']} ({round(user.gold_quartz / quartz_to_quartz['gold_quartz'])})",
+                    label=f"1 = {quartz_to_quartz['gold_quartz']:,} ({int(user.gold_quartz // 1)})",
                     custom_id=f"exchange_quartz_to_quartz:{user.id}:2",
                 ),
             ),

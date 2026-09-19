@@ -40,14 +40,14 @@ class ExchangeListener(commands.Cog):
         yens = await self.bot.client.get_user_balance(inter.guild_id, inter.author.id)
 
         await inter.edit_original_message(
-            components=profile_exchange_menu(user, yens), 
+            components=profile_exchange_menu(user, yens.total), 
             flags=disnake.MessageFlags(is_components_v2=True)
         )
 
     @commands.Cog.listener(name="on_button_click")
-    @custom_id_check("exchange_money")
+    @custom_id_check("exchange_money_to_quartz")
     @callback_data_injection()
-    async def exchange_money_listener(
+    async def exchange_money_to_quartz_listener(
         self,
         inter: disnake.MessageInteraction,
         callback: Callback, 
@@ -73,18 +73,16 @@ class ExchangeListener(commands.Cog):
 
         user = await self.bot.db.get_user(inter.author.id)
         balance = await self.bot.client.update_user_balance(inter.guild_id, inter.author.id, bank=-info["yen"])
-        banner = await characters_image_generate(user.characters, user.banner_id)
 
         await inter.edit_original_message(
-            file=banner,  
-            components=profile_template(True, user, balance.total, inter.locale),
-            flags=disnake.MessageFlags(is_components_v2=True, ephemeral=user.is_inkognito),
+            components=profile_exchange_menu(user, balance.total), 
+            flags=disnake.MessageFlags(is_components_v2=True)
         )
 
     @commands.Cog.listener(name="on_button_click")
-    @custom_id_check("exchange_quartz")
+    @custom_id_check("exchange_quartz_to_money")
     @callback_data_injection()
-    async def exchange_quartz_listener(
+    async def exchange_quartz_to_money_listener(
         self,
         inter: disnake.MessageInteraction,
         callback: Callback, 
@@ -113,18 +111,16 @@ class ExchangeListener(commands.Cog):
         user = await self.bot.db.get_user(inter.author.id)
 
         balance = await self.bot.client.update_user_balance(inter.guild_id, inter.author.id, bank=+value)
-        banner = await characters_image_generate(user.characters, user.banner_id)
 
         await inter.edit_original_message(
-            file=banner,  
-            components=profile_template(True, user, balance.total, inter.locale),
-            flags=disnake.MessageFlags(is_components_v2=True, ephemeral=user.is_inkognito),
+            components=profile_exchange_menu(user, balance.total), 
+            flags=disnake.MessageFlags(is_components_v2=True)
         )
 
     @commands.Cog.listener(name="on_button_click")
     @custom_id_check("exchange_quartz_to_quartz")
     @callback_data_injection()
-    async def exchange_quartz_listener(
+    async def exchange_quartz_to_quartz_listener(
         self,
         inter: disnake.MessageInteraction,
         callback: Callback, 
