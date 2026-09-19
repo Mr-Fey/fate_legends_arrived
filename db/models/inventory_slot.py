@@ -57,7 +57,7 @@ class InventorySlot(BaseModel):
 
     @property
     def price(self) -> float: 
-        return f"{self.item.price}{conf.quartz_emojis["quartz"]}"
+        return f"{self.item.price}{conf.quartz_emojis['quartz']}"
 
     @property
     def description(self) -> float: 
