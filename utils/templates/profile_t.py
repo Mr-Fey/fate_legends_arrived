@@ -29,6 +29,24 @@ def profile_template(
                 translate("profile_template_title", locale, user=f"<@{user.id}>")
             ),
             ui.Separator(),
+            ui.TextDisplay(
+                get_money_draw(
+                    value=user.quartz,
+                    type="quartz",
+                ),
+            ),
+            ui.TextDisplay(
+                get_money_draw(
+                    value=user.negative_quartz,
+                    type="negative_quartz",
+                ),
+            ),
+            ui.TextDisplay(
+                get_money_draw(
+                    value=user.gold_quartz,
+                    type="gold_quartz",
+                ),
+            ),
             ui.Section(
                 ui.TextDisplay(f"{yens:,}💴"),
                 accessory=ui.Button(
