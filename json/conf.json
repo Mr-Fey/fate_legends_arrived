@@ -20,6 +20,10 @@
             "quartz": 30000, 
             "negative_quartz": 100000, 
             "gold_quartz": 500000
+        }, 
+        "quartz_to_quartz": {
+            "negative_quartz": 6, 
+            "gold_quartz": 30
         }
     },
     "character_colors": {

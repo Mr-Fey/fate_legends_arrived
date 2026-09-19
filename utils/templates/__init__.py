@@ -1,5 +1,6 @@
 from .profile_t import (
     profile_template, 
+    profile_exchange_menu, 
     profile_controle_template, 
     profile_banner_choice_template,
 )
@@ -23,6 +24,7 @@ from .inventory import (
 __all__ = (
     #profile templates
     "profile_template",
+    "profile_exchange_menu",
     "profile_controle_template",
     "profile_banner_choice_template",
 

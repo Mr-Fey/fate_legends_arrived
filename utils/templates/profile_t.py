@@ -5,6 +5,7 @@ from disnake import (
     MediaGalleryItem,
 )
 
+from settings import conf
 from db.models import User 
 from utils.economy import get_money_draw
 from utils.imgen import _total_banners
@@ -14,7 +15,6 @@ from ._general import (
     character_info_select, 
     back_to_profile_button, 
 )
-
 
 
 def profile_template(
@@ -30,49 +30,10 @@ def profile_template(
             ),
             ui.Separator(),
             ui.Section(
-                ui.TextDisplay(
-                    get_money_draw(
-                        value=getattr(user, "quartz"),
-                        type="quartz",
-                    ),
-                ),
-                accessory=ui.Button(
-                    label="Перевести в 💴", 
-                    custom_id=f"exchange_quartz:{user.id}:0",
-                    disabled=not is_author,
-                ), 
-            ),
-            ui.Section(
-                ui.TextDisplay(
-                    get_money_draw(
-                        value=getattr(user, "negative_quartz"),
-                        type="negative_quartz",
-                    ),
-                ),
-                accessory=ui.Button(
-                    label="Перевести в 💴", 
-                    custom_id=f"exchange_quartz:{user.id}:1",
-                    disabled=not is_author,
-                ), 
-            ),
-            ui.Section(
-                ui.TextDisplay(
-                    get_money_draw(
-                        value=getattr(user, "gold_quartz"),
-                        type="gold_quartz",
-                    ),
-                ),
-                accessory=ui.Button(
-                    label="Перевести в 💴", 
-                    custom_id=f"exchange_quartz:{user.id}:2",
-                    disabled=not is_author,
-                ), 
-            ),
-            ui.Section(
                 ui.TextDisplay(f"{yens:,}💴"),
                 accessory=ui.Button(
-                    label="Перевести в СК", 
-                    custom_id=f"exchange_money:{user.id}", 
+                    label="Перевод валют", 
+                    custom_id=f"exchange_money_menu:{user.id}", 
                     disabled=not is_author, 
                 )
             ),
@@ -156,5 +117,96 @@ def profile_banner_choice_template(author_id: int, message_id: int, banner_id: i
                     custom_id=f"banner_choice:{author_id}:{next_id}", 
                 )
             )
+        )
+    ]
+
+
+def profile_exchange_menu(user: User, yens: int) -> ui.UIComponent: 
+    emojis = conf.quartz_emojis
+    yens_to_quartz = conf.exchange_info['yens_to_quartz']
+    quartz_to_yens = conf.exchange_info['quartz_to_yens']
+    quartz_to_quartz = conf.exchange_info['quartz_to_quartz']
+
+    yents_to_quartz_price = yens_to_quartz['yens']
+    return [
+        ui.Container(
+            back_to_profile_button(user.id),
+            ui.Separator(), 
+            ui.TextDisplay(f"# 💴 -> {emojis['quartz']}"),
+            ui.Section(
+                ui.TextDisplay(f"{yens:,}💴"),
+                accessory=ui.Button(
+                    label=(
+                        f"{yents_to_quartz_price}💴 = {yens_to_quartz['quartz']}",
+                        f"{emojis[yens_to_quartz['quartz_type']]}",
+                        f"({round(yens / yents_to_quartz_price)})",
+                    ),
+                    custom_id=f"exchange_money:{user.id}",
+                ),
+            ),
+            ui.Separator(),
+            ui.TextDisplay(f"# {emojis['quartz']} -> 💴"),
+            ui.Section(
+                ui.TextDisplay(
+                    get_money_draw(
+                        value=user.quartz,
+                        type="quartz",
+                    ),
+                ),
+                accessory=ui.Button(
+                    label=f"1 = {quartz_to_yens['quartz']} ({round(user.quartz / 1)})",
+                    custom_id=f"exchange_quartz:{user.id}:0",
+                ),
+            ),
+            ui.Section(
+                ui.TextDisplay(
+                    get_money_draw(
+                        value=user.negative_quartz,
+                        type="negative_quartz",
+                    ),
+                ),
+                accessory=ui.Button(
+                    label=f"1 = {quartz_to_yens['negative_quartz']} ({round(user.negative_quartz / 1)})",
+                    custom_id=f"exchange_quartz:{user.id}:1",
+                ),
+            ),
+            ui.Section(
+                ui.TextDisplay(
+                    get_money_draw(
+                        value=user.gold_quartz,
+                        type="gold_quartz",
+                    ),
+                ),
+                accessory=ui.Button(
+                    label=f"1 = {quartz_to_yens['gold_quartz']} ({round(user.gold_quartz / 1)})",
+                    custom_id=f"exchange_quartz:{user.id}:2",
+                ),
+            ),
+            ui.Separator(),
+            ui.TextDisplay(f"# {emojis['quartz']} -> {emojis['quartz']}"),
+            ui.Section(
+                ui.TextDisplay(
+                    get_money_draw(
+                        value=user.negative_quartz,
+                        type="negative_quartz",
+                    ),
+                ),
+                accessory=ui.Button(
+                    label=f"1 = {quartz_to_quartz['negative_quartz']} ({round(user.negative_quartz / quartz_to_quartz['negative_quartz'])})",
+                    custom_id=f"exchange_quartz_to_quartz:{user.id}:1",
+                ),
+            ),
+            ui.Section(
+                ui.TextDisplay(
+                    get_money_draw(
+                        value=user.gold_quartz,
+                        type="gold_quartz",
+                    ),
+                ),
+                accessory=ui.Button(
+                    label=f"1 = {quartz_to_quartz['gold_quartz']} ({round(user.gold_quartz / quartz_to_quartz['gold_quartz'])})",
+                    custom_id=f"exchange_quartz_to_quartz:{user.id}:2",
+                ),
+            ),
         )
     ]

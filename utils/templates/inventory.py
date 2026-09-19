@@ -35,12 +35,14 @@ def inventory_menu_template(user: User, page_id: int, locale: Locale) -> ui.UICo
                     ui.Button(
                         label="Использовать", 
                         style=ButtonStyle.secondary, 
-                        custom_id=f"use_item:{user.id}:{i.id}", 
+                        custom_id=f"use_item:{user.id}:{i.id}",  
+                        disabled=True, 
                     ), 
                     ui.Button(
                         label="Выкинуть", 
                         style=ButtonStyle.danger, 
-                        custom_id=f"drop_item:{user.id}:{i.id}"
+                        custom_id=f"drop_item:{user.id}:{i.id}", 
+                        disabled=True, 
                     )
                 )
             ] for idx, (i) in enumerate(items, start + 1)), 
