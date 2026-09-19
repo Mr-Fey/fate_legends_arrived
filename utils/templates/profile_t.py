@@ -145,7 +145,7 @@ def profile_exchange_menu(user: User, yens: int) -> ui.UIComponent:
     quartz_to_yens = conf.exchange_info['quartz_to_yens']
     quartz_to_quartz = conf.exchange_info['quartz_to_quartz']
 
-    yents_to_quartz_price = yens_to_quartz['yens']
+    yents_to_quartz_price = yens_to_quartz['yen']
     return [
         ui.Container(
             back_to_profile_button(user.id),
