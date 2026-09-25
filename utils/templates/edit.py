@@ -7,6 +7,59 @@ from disnake import (
 )
 
 
+def edit_member_character_template(author_id: int, characters: dict[str, int]) -> ui.UIComponent: 
+    return [
+        ui.Container(
+            ui.TextDisplay("Выберите пользователя:"),
+            ui.ActionRow(
+                ui.UserSelect(
+                    custom_id=f"edit_member_character_user:{author_id}",
+                    min_values=1,
+                    max_values=1,
+                )
+            ),
+            ui.Separator(),
+            ui.TextDisplay("Выберите Персонажа:"),
+            ui.ActionRow(
+                ui.StringSelect(
+                    custom_id=f"edit_member_character_id:{author_id}",
+                    options=[
+                        SelectOption(label="Убрать", value="0"),
+                        *(
+                            SelectOption(label=name, value=str(id))
+                            for name, id in characters.items()
+                        )
+                    ],   
+                    min_values=1,
+                    max_values=1,
+                )
+            ),
+            ui.Separator(),
+            ui.TextDisplay("Выберите слот:"),
+            ui.ActionRow(
+                ui.StringSelect(
+                    custom_id=f"edit_member_character_slot_index:{author_id}",
+                    options=[
+                        SelectOption(label="1", value="0", description="Пьерви й"),
+                        SelectOption(label="2", value="1", description="Втарой"),
+                        SelectOption(label="3", value="2", description="Третмй"),
+                    ],
+                    max_values=1,
+                    min_values=1,
+                )
+            ),
+            ui.Separator(),
+            ui.ActionRow(
+                ui.Button(
+                    label="Подтвердить", 
+                    custom_id=f"edit_member_character_confirm:{author_id}", 
+                    style=ButtonStyle.primary, 
+                )
+            )
+        )
+    ]
+
+
 def edit_member_quartz_template(author_id: int) -> ui.UIComponent: 
     return [
         ui.Container(

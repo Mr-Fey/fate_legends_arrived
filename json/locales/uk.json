@@ -22,9 +22,15 @@
     "disperse_successfully": "{servant} був успішно розвіян за {price}",
 
     "edit_quartz_command_description": "Редагувати Кварц користувача",
-    "edit_member_quartz_decline": "Ви маєте заповнити всі графи перед продовженням!",
     "edit_member_quartz_complited": "Кварц було передано користувачу!",
     "edit_member_quartz_notify": "Ваш рахунок Кварцу було змінено адміністрацією: {quartz}",
+
+    "edit_member_not_full_info": "Ви повинні заповнити всі графи для продовження!!",
+	
+    "edit_characters_command_description": "Редагувати слоти Слуг учасника", 
+    "edit_member_character_complited": "Слуги учасника було оновлено",
+    "edit_member_character_notify": "Ваші слуги змінені: тепер {servant} займає {slot_index} слот", 
+    "edit_member_character_name": "ніхто не",
 
     "no_items_in_inventory": "А це ще що таке? Схоже ти без цурекри в гаманці...!",
     "user_inventory_page": "Сторінка: {page}",

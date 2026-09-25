@@ -1,9 +1,10 @@
+import random
 import disnake
 from bot import Bot
 from disnake.ext import commands
 
 from collections import defaultdict
-from utils.templates import edit_member_quartz_template 
+from utils.templates import edit_member_character_template 
 from utils.localization import translate
 from utils.injections import (
     Callback,
@@ -12,84 +13,73 @@ from utils.injections import (
 )
 
 
-class editMemberQuartzListener(commands.Cog):
+class editMemberCharacterListener(commands.Cog):
     def __init__(self, bot: Bot) -> None:
         self.bot = bot
         self.data = defaultdict(dict)
 
     @commands.Cog.listener(name="on_dropdown")
-    @custom_id_check("edit_member_quartz_user")
+    @custom_id_check("edit_member_character_user")
     @callback_data_injection()
-    async def edit_member_quartz_user(
+    async def edit_member_character_user(
         self, 
         inter: disnake.MessageInteraction, 
         callback: Callback,
     ): 
         await inter.response.defer(ephemeral=True)
+
         if not callback.author_id or inter.author.id != callback.author_id:
             return await inter.send(
                 translate("not_from_author_interaction_error", inter.locale),
                 ephemeral=True,
             )
-        self.data[f"{inter.message.id}"]["user_id"] = inter.values[0] 
+        self.data[str(inter.message.id)]["user_id"] = inter.values[0] 
 
     @commands.Cog.listener(name="on_dropdown")
-    @custom_id_check("edit_member_quartz_type")
+    @custom_id_check("edit_member_character_id")
     @callback_data_injection()
-    async def edit_member_quartz_type(
+    async def edit_member_character_id(
         self, 
         inter: disnake.MessageInteraction, 
-        callback: Callback,
+        callback: Callback, 
     ): 
         await inter.response.defer(ephemeral=True)
+
         if not callback.author_id or inter.author.id != callback.author_id:
             return await inter.send(
                 translate("not_from_author_interaction_error", inter.locale),
                 ephemeral=True,
             )
-        self.data[f"{inter.message.id}"]["quartz_type"] = inter.values[0] 
+
+        self.data[str(inter.message.id)]['character_id'] = int(inter.values[0])
 
     @commands.Cog.listener(name="on_dropdown")
-    @custom_id_check("edit_member_quartz_value")
+    @custom_id_check("edit_member_character_slot_index")
     @callback_data_injection()
-    async def edit_member_quartz_value(
+    async def edit_member_character_slot_index(
         self, 
         inter: disnake.MessageInteraction, 
-        callback: Callback,
+        callback: Callback, 
     ): 
         await inter.response.defer(ephemeral=True)
-        if not callback.author_id or inter.author.id != callback.author_id:
-            return await inter.send(
-                translate("not_from_author_interaction_error", inter.locale),
-                ephemeral=True,
-            )
-        self.data[f"{inter.message.id}"]["value"] = inter.values[0] 
 
-    @commands.Cog.listener(name="on_dropdown")
-    @custom_id_check("edit_member_quartz_request")
-    @callback_data_injection()
-    async def edit_member_quartz_request(
-        self, 
-        inter: disnake.MessageInteraction, 
-        callback: Callback,
-    ): 
-        await inter.response.defer(ephemeral=True)
         if not callback.author_id or inter.author.id != callback.author_id:
             return await inter.send(
                 translate("not_from_author_interaction_error", inter.locale),
                 ephemeral=True,
             )
-        self.data[f"{inter.message.id}"]["request"] = inter.values[0] 
+        self.data[str(inter.message.id)]['slot_index'] = int(inter.values[0])
+
 
     @commands.Cog.listener(name="on_button_click")
-    @custom_id_check("edit_member_quartz_confirm")
-    @callback_data_injection()
-    async def listener_name_listener(
-        self,
-        inter: disnake.MessageInteraction,
+    @custom_id_check("edit_member_character_confirm")
+    async def edit_member_character_confirm(
+        self, 
+        inter: disnake.MessageInteraction, 
         callback: Callback, 
-    ) -> None:
+    ): 
         await inter.response.defer(ephemeral=True)
+        
         if not callback.author_id or inter.author.id != callback.author_id:
             return await inter.send(
                 translate("not_from_author_interaction_error", inter.locale),
@@ -97,41 +87,54 @@ class editMemberQuartzListener(commands.Cog):
             )
 
         data = self.data[str(inter.message.id)]
-        user_id = int(data.get("user_id", 0))
-        quartz_type = data.get("quartz_type")
-        request = data.get("request")
-        pre_value = int(data.get("value", 0))
-        value = -pre_value if request == "remove" else +pre_value
+        user_id = data.get('user_id')
+        character_id = data.get('character_id')
+        slot_index = data.get('slot_index')
+        character_name = translate("edit_member_character_name", inter.locale)
+        image_url = None
 
-        if any(not i for i in [user_id, quartz_type, request, value]): 
+        pre_characters = await self.bot.db.get_all_characters()
+        characters = {c.name: c.id for c in pre_characters}
+
+        if any(i is None for i in [user_id, character_id, slot_index]): 
             return await inter.send(
                 translate("edit_member_not_full_info", inter.locale), 
                 ephemeral=True, 
             )
 
-        await self.bot.db.update_user_money(
+        if character_id != 0: 
+            character = await self.bot.db.get_character_by_id(character_id)
+            character_name = character.name
+            image_url = random.choice(character.banners) if len(character.banners) > 0 else character.banners[0]
+
+        await self.bot.db.update_user_character_slot(
             user_id=user_id, 
-            type=quartz_type, 
-            delta=value, 
+            slot_index=slot_index, 
+            character_id=character_id, 
+            image_url=image_url, 
         )
+
         await inter.send(
-            translate("edit_member_quartz_complited", inter.locale), 
+            translate("edit_member_character_complited", inter.locale), 
             ephemeral=True,
         )
         await inter.message.edit(
-            components=edit_member_quartz_template(inter.author.id), 
+            components=edit_member_character_template(inter.author.id, characters), 
             flags=disnake.MessageFlags(is_components_v2=True)
         )
+
         del self.data[str(inter.message.id)]
+
         user = await self.bot.fetch_user(user_id)
         await user.send(
             translate(
-                "edit_member_quartz_notify",
+                "edit_member_character_notify",
                 inter.locale,
-                quartz=f"{'+' if value > 0 else '-'}{value}{self.bot.conf.quartz_emojis[quartz_type]}"
+                servant=character_name, 
+                slot_index=slot_index + 1,
             )
         )
 
 
-def setup(bot: Bot) -> None:
-    bot.add_cog(editMemberQuartzListener(bot))
+def setup(bot: Bot) -> None: 
+    bot.add_cog(editMemberCharacterListener(bot))

@@ -15,6 +15,7 @@ from .characters_t import (
 )
 from .edit import (
     edit_member_quartz_template, 
+    edit_member_character_template, 
 )
 from .inventory import (
     inventory_menu_template,
@@ -33,6 +34,7 @@ __all__ = (
 
     #edit templates
     "edit_member_quartz_template",
+    "edit_member_character_template",
 
     #inventory templates
     "inventory_menu_template",

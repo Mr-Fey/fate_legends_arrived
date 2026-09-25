@@ -2,7 +2,10 @@ import disnake
 from bot import Bot
 from disnake.ext import commands
 from disnake.i18n import Localised
-from utils.templates import edit_member_quartz_template 
+from utils.templates import (
+    edit_member_character_template, 
+    edit_member_quartz_template, 
+) 
 
 
 class EditMembedCog(commands.Cog):
@@ -26,6 +29,25 @@ class EditMembedCog(commands.Cog):
         await inter.send(
             components=edit_member_quartz_template(inter.author.id), 
             flags=disnake.MessageFlags(is_components_v2=True)
+        )
+
+    @edit_command.sub_command(
+        name="servant", 
+        description=Localised("Edit member's Servant slots", key="edit_characters_command_description")
+    )
+    @commands.has_permissions(administrator=True)
+    async def edit_characters_command(
+        self, 
+        inter: disnake.AppCmdInter, 
+    ): 
+        await inter.response.defer()
+
+        pre_characters = await self.bot.db.get_all_characters()
+        characters = {c.name: c.id for c in pre_characters}
+
+        await inter.send(
+            components=edit_member_character_template(inter.author.id, characters), 
+            flags=disnake.MessageFlags(is_components_v2=True),
         )
 
 
